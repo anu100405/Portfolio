@@ -51,87 +51,6 @@ function RichText({ text }) {
   )
 }
 
-function Branch() {
-  return (
-    <div className="branch-wrap">
-      <svg viewBox="0 0 300 340" fill="none" aria-hidden="true">
-        <path
-          className="branch-path"
-          d="M150 330 C150 260 110 240 120 180 C128 130 90 110 95 60 C98 30 130 10 150 5"
-        />
-        <path
-          className="branch-path"
-          style={{ animationDelay: '.5s' }}
-          d="M120 180 C90 175 70 150 55 155"
-        />
-        <path
-          className="branch-path"
-          style={{ animationDelay: '.7s' }}
-          d="M128 130 C158 122 175 100 195 105"
-        />
-        <path
-          className="branch-path"
-          style={{ animationDelay: '.9s' }}
-          d="M98 60 C70 55 55 35 35 40"
-        />
-        <ellipse
-          className="leaf"
-          style={{ animationDelay: '1.2s' }}
-          cx="52"
-          cy="150"
-          rx="16"
-          ry="7"
-          transform="rotate(-20 52 150)"
-        />
-        <ellipse
-          className="leaf"
-          style={{ animationDelay: '1.4s' }}
-          cx="198"
-          cy="100"
-          rx="16"
-          ry="7"
-          transform="rotate(20 198 100)"
-        />
-        <ellipse
-          className="leaf"
-          style={{ animationDelay: '1.6s' }}
-          cx="32"
-          cy="36"
-          rx="15"
-          ry="7"
-          transform="rotate(-15 32 36)"
-        />
-        <ellipse
-          className="leaf"
-          style={{ animationDelay: '1.8s' }}
-          cx="150"
-          cy="4"
-          rx="15"
-          ry="7"
-        />
-        <ellipse
-          className="leaf"
-          style={{ animationDelay: '2.0s' }}
-          cx="118"
-          cy="182"
-          rx="14"
-          ry="6"
-          transform="rotate(-35 118 182)"
-        />
-        <ellipse
-          className="leaf"
-          style={{ animationDelay: '2.1s' }}
-          cx="128"
-          cy="128"
-          rx="14"
-          ry="6"
-          transform="rotate(30 128 128)"
-        />
-      </svg>
-    </div>
-  )
-}
-
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [sent, setSent] = useState(false)
@@ -191,35 +110,32 @@ function App() {
       </header>
 
       <section className="hero">
-        <div className="wrap hero-grid">
-          <div>
-            <div className="eyebrow">
-              <span className="bar" />
-              {site.role}
-            </div>
-            <h1 className="display">
-              {site.headline[0]}
-              <br />
-              {site.headline[1]}
-              <em>{site.headline[2]}</em>
-              <br />
-              {site.headline[3]}
-            </h1>
-            <div className="hero-role">
-              $ whoami {typed}
-              <span className="cursor" />
-            </div>
-            <p className="hero-desc">{site.intro}</p>
-            <div className="hero-cta">
-              <a href="#projects" className="btn btn-solid">
-                View my work
-              </a>
-              <a href="#contact" className="btn btn-ghost">
-                Get in touch
-              </a>
-            </div>
+        <div className="wrap">
+          <div className="eyebrow">
+            <span className="bar" />
+            {site.role}
           </div>
-          <Branch />
+          <h1 className="display">
+            {site.headline[0]}
+            <br />
+            {site.headline[1]}
+            <em>{site.headline[2]}</em>
+            <br />
+            {site.headline[3]}
+          </h1>
+          <div className="hero-role">
+            $ whoami {typed}
+            <span className="cursor" />
+          </div>
+          <p className="hero-desc">{site.intro}</p>
+          <div className="hero-cta">
+            <a href="#projects" className="btn btn-solid">
+              View my work
+            </a>
+            <a href="#contact" className="btn btn-ghost">
+              Get in touch
+            </a>
+          </div>
         </div>
       </section>
 
@@ -316,7 +232,7 @@ function App() {
         <div className="wrap">
           <div className="section-head reveal">
             <span className="section-num">04</span>
-            <h2 className="section-title">Selected work</h2>
+            <h2 className="section-title">Projects</h2>
             <span className="section-rule" />
           </div>
           <div className="proj-list">
@@ -325,7 +241,16 @@ function App() {
                 <span className="proj-idx">{String(i + 1).padStart(2, '0')}</span>
                 <div className="proj-body">
                   <h3>{p.title}</h3>
-                  <p>{p.body}</p>
+                  {p.body ? <p>{p.body}</p> : null}
+                  {p.bullets ? (
+                    <ul className="log-bullets">
+                      {p.bullets.map((b) => (
+                        <li key={b}>
+                          <RichText text={b} />
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                   <div className="tag-row">
                     {p.tags.map((t) => (
                       <span className="tag" key={t}>
@@ -413,7 +338,7 @@ function App() {
       </section>
 
       <footer>
-        © {new Date().getFullYear()} {site.name}. Built with olive branches 🫒
+        © {new Date().getFullYear()} {site.name}
       </footer>
     </>
   )
