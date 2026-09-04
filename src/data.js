@@ -87,6 +87,8 @@ export const site = {
         'GitHub',
       ],
       href: 'https://github.com/anu100405/Fraud_Detection',
+      bullets: [
+        'Developed a machine learning-based fraud detection system, achieving **94.78% accuracy** and **94.27% recall** on 1.9M test transactions to classify financial transactions as legitimate or fraudulent.',
         'Performed data preprocessing, feature engineering, and model training using Python, Pandas, and Scikit-learn.',
         'Built an interactive Streamlit web application for real-time fraud prediction based on transaction details.',
         'Integrated a trained ML pipeline for automated inference, enabling efficient and scalable fraud risk assessment.',
