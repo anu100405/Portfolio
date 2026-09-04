@@ -36,7 +36,7 @@ export const site = {
     },
     {
       title: 'Tools',
-      items: ['Git / GitHub', 'VS Code', 'DSA practice'],
+      items: ['GitHub', 'Cursor' , 'Postman' , 'MongoDB Compass'],
     },
   ],
   experience: [
